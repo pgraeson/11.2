@@ -1,0 +1,39 @@
+// This #include statement was automatically added by the Particle IDE.
+#include "Adafruit_DHT/Adafruit_DHT.h"
+
+// DHT parameters
+#define DHTPIN 5
+#define DHTTYPE DHT11
+
+// Variables
+int temperature;
+int humidity;
+
+
+// DHT sensor
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+    
+    // Start DHT sensor
+    dht.begin();
+}
+
+void loop() {
+    
+    // Temperature measurement
+    temperature = dht.getTempCelcius();
+    
+    // Humidity measurement
+    humidity = dht.getHumidity();
+    
+  
+    
+    // Publish data
+    Particle.publish("temperature", String(temperature) + "°C");
+    delay(2000);
+ //   Particle.publish("humidity", String(humidity) + "%");
+ //   delay(500);
+
+    
+}
