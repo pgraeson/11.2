@@ -1,3 +1,4 @@
+
 int led1 = D0; //BLUE
 
 int led2 = D7; //BUILT IN LED
@@ -15,7 +16,7 @@ void setup() {
   pinMode(led4, OUTPUT);
   
 
-Particle.subscribe("temp", myHandler,"1d0030000f47353136383631"); //TO TEST CODE
+Particle.subscribe("temperature", myHandler,"1d0030000f47353136383631"); 
 }
 
 
@@ -27,39 +28,73 @@ void loop() {
 
 void myHandler(const char *event, const char *data)
 {
-    
-  if (strcmp(data,("14","15","16"))==0)
+     
+  if (strcmp(data,("14°C","15°C","16°C"))==0)
   { 
   digitalWrite(led1, LOW);
-  digitalWrite(led2, HIGH);
+  digitalWrite(led2, LOW);
   digitalWrite(led3, LOW);
   digitalWrite(led4, LOW);
   
-  String Working = String(1);
-  
-  Particle.publish("Working", Working);
+   String Wake = String(Wake);
+     Particle.publish("Wake","Last Breath");
+     
+     
+      String Clothes = String(Clothes);
+     Particle.publish("Clothes", "Wear winter clothes");
+     
+     delay(180000);
   }
   
-  else if (strcmp(data, ("17","18","19"))==0){
+  else if (strcmp(data, ("17°C","18°C","19°C"))==0){
       digitalWrite(led1, HIGH);
       digitalWrite(led2, LOW);
       digitalWrite(led3, LOW);
       digitalWrite(led4, LOW);
-    
- 
+      
+    String Wake = String(Wake);
+     Particle.publish("Wake","Last Breath");
+     
+     
+     String Clothes = String(Clothes);
+     Particle.publish("Clothes", "Wear winter clothes");
+     
+     delay(180000);
   }
   
   
-  else if (strcmp(data, ("20","21"))==0){
+  else if (strcmp(data, ("20°C","21°C","22°C"))==0){
       digitalWrite(led1, HIGH);
       digitalWrite(led2, LOW);
       digitalWrite(led3, LOW);
       digitalWrite(led4, HIGH);
+      
+     String Happy = String(Happy);
+     Particle.publish("Happy","Afraid");
+     
+     String clothes = String(clothes);
+     Particle.publish("clothes", "Wear a mix of S & W clothes");
+     
+     delay(30000);
+  }
+  
+  
+  else if (strcmp(data, ("23°C","24°C","25°C"))==0){
+      digitalWrite(led1, LOW);
+      digitalWrite(led2, LOW);
+      digitalWrite(led3, HIGH);
+      digitalWrite(led4, HIGH);
+      
+     String Happy = String(Happy);
+     Particle.publish("Happy","Afraid");
+     
+     String clothes = String(clothes);
+     Particle.publish("clothes", "Wear a mix of S & W clothes");
+     
+     delay(30000);
   }
   
   
 
 
 }
-
-  
